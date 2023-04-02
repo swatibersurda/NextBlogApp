@@ -101,5 +101,5 @@ const postBlog = async (req, res) => {
   } catch (err) {
     return console.log(err);
   }
-  return res.status(201).json(blogs);
+  return res.status(201).json({blogs});
 };

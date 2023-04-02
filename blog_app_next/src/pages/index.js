@@ -1,5 +1,6 @@
 import Head from 'next/head'
-export default function Home() {
+import { PaginatedComponent } from '@/Components/PaginatedComponent'
+export default  function Home({products}) {
   return (
     <>
       <Head>
@@ -9,8 +10,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-       
+       hiii
+       <PaginatedComponent/>
       </main>
     </>
   )
+}
+
+export async function getServerSideProps(content){
+  const page=content?.query?.page||0;
+  const dataToSearch=content?.query?.data||"";
+  // console.log(queryData,"queryData...")
+  const data=await fetch(`http://localhost:3000/api/blogs?page=${page}&data=${dataToSearch}`)
+  const result=await data.json();
+  console.log(result,"ooo");
+
+
+  return{
+    props:{
+     products:result
+    }
+  }
 }
