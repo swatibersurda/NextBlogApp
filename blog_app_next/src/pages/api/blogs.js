@@ -61,7 +61,7 @@ const fetchAllBlogs = async (req, res) => {
       .limit(limit)
       .skip(page)
       .sort(sorting)
-      .populate("comments")
+      .populate("commentsArray")
       .lean()
       .exec();
     return res.send(result);
@@ -96,12 +96,10 @@ const postBlog = async (req, res) => {
 
   try {
     await blogs.save();
-    await userModel
-      .findOneAndUpdate(
-        { _id: req.body.user_id },
-        { $push: { "blogsArray": blogs } }
-      )
-      
+    await userModel.findOneAndUpdate(
+      { _id: req.body.user_id },
+      { $push: { blogsArray: blogs } }
+    );
   } catch (err) {
     return console.log(err);
   }

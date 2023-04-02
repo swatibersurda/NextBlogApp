@@ -19,7 +19,7 @@ export default async (req, res) => {
     return res.status(400).json({ message: "blog not found" });
   }
   const newComment = new commentModel({
-    comments: req.body.comments,
+    comm: req.body.comm,
     blog_id: req.body.blog_id,
   });
 
@@ -32,7 +32,7 @@ export default async (req, res) => {
     // {$push:{"blogsArray":blogs}})
     const x = await blogModel.findOneAndUpdate(
       { _id: req.body.blog_id },
-      { $push:{ "commentsArray": newComment } }
+      { $push: {"commentsArray": newComment } }
     );
     console.log(x, "xxvsbbs");
   } catch (err) {
@@ -40,7 +40,3 @@ export default async (req, res) => {
   }
   return res.status(201).json({ newComment });
 };
-//   { _id:req.body.blog_id },
-// after finding particular blod then add comment inside it.
-//   { $push:{"comments": newComment } }
-// );
