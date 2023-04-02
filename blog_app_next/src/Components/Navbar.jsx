@@ -13,16 +13,6 @@ export const Navbar = () => {
   const handleSearchParams = (val) => {
     console.log(val, "vallll..");
     setUrll(val);
-    // IF THE LENGTH OF TITLE IS GREATER THEN TWO THEN SET IT ON FIRST LETTER DO NOT SERACH IT OR SHOW ON URL QUERY
-    // if(urll.length>2){
-    //   push({query:{...query,data:urll}})
-    // }
-    // else if(query.page||query.limit){
-    //   push({query:{...query,page:query.page}})
-
-    // }
-    // else{
-    //   push("/")
   };
 
   useEffect(() => {
