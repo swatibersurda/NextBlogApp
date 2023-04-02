@@ -17,10 +17,11 @@ export default async (req, res) => {
 };
 
 const getByID = async (req, res) => {
+  console.log("reahing at blogidd..");
   try {
     console.log(req.query, "ppp");
     // here id will come in query and the name of folder
-    const result = await userModel.findById({ _id: req.query.useid });
+    const result = await blogModel.findById({ _id: req.query.blogid }).populate("commentsArray");
     console.log(result, "resultt");
     res.status(200).json({ result: result, message: "getedByID" });
   } catch (err) {
@@ -30,14 +31,14 @@ const getByID = async (req, res) => {
 
 // DELETE BY ID
 const deleteById = async (req, res) => {
-  console.log(req.query.useid, "bcxsvbxcs", userModel);
+  console.log(req.query.blogid, "bcxsvbxcs", userModel);
   // FIRST DELETE BLOG FROM BLOGS COLLECTION THEN DELETE IT FROM USER'S BLOGS ARRAY..
-  const result = await blogModel.findByIdAndDelete({ _id: req.query.useid });
+  const result = await blogModel.findByIdAndDelete({ _id: req.query.blogid });
   try {
     await blogs.save();
     await userModel.findOneAndUpdate(
       { _id: req.body.user_id },
-      { $pull: { blogsArray: req.query.useid } }
+      { $pull: { blogsArray: req.query.blogid } }
     );
 
     return res.status(204).json({ message: "Deleted Sucessfully..." });
@@ -47,10 +48,10 @@ const deleteById = async (req, res) => {
 };
 
 const updateById = async (req, res) => {
-  console.log(req.query.useid, "immm");
+  console.log(req.query.blogid, "immm");
   try {
     const result = await blogModel.findByIdAndUpdate(
-      { _id: req.query.useid },
+      { _id: req.query.blogid },
       req.body,
       {
         new: true,

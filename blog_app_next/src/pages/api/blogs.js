@@ -1,12 +1,7 @@
-import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
-import jsonwebtoken from "jsonwebtoken";
 import blogModel from "@/Model/blog.model";
 import dbConnect from "@/Config/dbConnect";
 import userModel from "@/Model/user.model";
-// import userModel from "../../Model/user.model";
 
-// import userModel from "@/Model/user.model";
 dbConnect();
 export default async (req, res) => {
   switch (req.method) {
@@ -26,16 +21,24 @@ export default async (req, res) => {
 };
 
 const fetchAllBlogs = async (req, res) => {
+  console.log(req.query,"reqq")
   let obj = {};
   let limit;
   let sorting;
   let page;
-  if (req.query.title) {
-    obj.title = { $in: req.query.title };
+  // db.inventory.find( { $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] } )
+// need to put the data in both title and 
+  // if (req.query.data) {
+  //   obj[req.query.data] = { $in: req.query.title };
+  // }
+  // if (req.query.content) {
+  //   obj.content = { $in: req.query.content };
+  // }
+  if(req.query.data){
+    // need to apply or query in thatt... data can be any one
+    obj={ $or: [ { title: req.query.data }, { content: req.query.data } ] }
   }
-  if (req.query.content) {
-    obj.content = { $in: req.query.content };
-  }
+
   if (req.query.limit) {
     limit = parseInt(req.query.limit);
   } else {
@@ -47,11 +50,7 @@ const fetchAllBlogs = async (req, res) => {
     page = 0;
   }
 
-  if (!req.query.sort === "") {
-    sorting = "";
-  } else {
-    sorting = req.query.sort;
-  }
+ 
   console.log(obj, "i am obj");
   try {
     // finding this
@@ -60,8 +59,7 @@ const fetchAllBlogs = async (req, res) => {
       .find(obj)
       .limit(limit)
       .skip(page)
-      .sort(sorting)
-      .populate("commentsArray")
+      //  .populate("commentsArray")
       .lean()
       .exec();
     return res.send(result);
@@ -98,7 +96,7 @@ const postBlog = async (req, res) => {
     await blogs.save();
     await userModel.findOneAndUpdate(
       { _id: req.body.user_id },
-      { $push: { blogsArray: blogs } }
+      { $push: { "blogsArray": blogs } }
     );
   } catch (err) {
     return console.log(err);
