@@ -5,13 +5,11 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 export const Navbar = () => {
+  console.log("i am runing navbar");
   const [urll, setUrll] = useState("");
 
   const { push, query } = useRouter();
-  // console.log(query,"query at navbar")
-
   const handleSearchParams = (val) => {
-    console.log(val, "vallll..");
     setUrll(val);
   };
 
@@ -24,8 +22,6 @@ export const Navbar = () => {
   }, [urll]);
 
   return (
-    // className={`${styles.navul}`}
-    // className={`${styles.navli}`}
     <div className={`${styles.divContainer}`}>
       <div className={`${styles.navDiv}`}>
         <Link className={`${styles.noDecoration}`} href={"/"}>

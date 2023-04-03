@@ -46,3 +46,33 @@
 .noDecoration{
   text-decoration: none;
 }
+.parentListDiv{
+  display: flex;
+  border:2px solid black;
+  width:80%;
+  height: 150px;
+  margin: auto;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+.imageDiv{
+  width:30%;
+  height: 100%;
+  border:1px solid crimson;
+}
+.contentDiv
+{
+  margin-left: 3%;
+  width:60%;
+  height: 100%;
+  border:1px solid yellow; 
+}
+.colorFamilly{
+  color:#6b5b95;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.familly{
+  font-size: 22px;
+  font-family: 'Times New Roman', Times, serif;
+  
+}

@@ -26,21 +26,15 @@ const fetchAllBlogs = async (req, res) => {
   let limit;
   let sorting;
   let page;
-  // db.inventory.find( { $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] } )
-// need to put the data in both title and 
-  // if (req.query.data) {
-  //   obj[req.query.data] = { $in: req.query.title };
-  // }
-  // if (req.query.content) {
-  //   obj.content = { $in: req.query.content };
-  // }
+  // let total=await blogModel.find(count());
+  // console.log(total,"total")
   if(req.query.data){
     // need to apply or query in thatt... data can be any one
     obj={ $or: [ { title: req.query.data }, { content: req.query.data } ] }
   }
-
-  if (req.query.limit) {
-    limit = parseInt(req.query.limit);
+// /If pages means you need paginated data there you need limit concept 
+  if (req.query.page) {
+    limit = 5;
   } else {
     limit = 0;
   }
@@ -49,7 +43,7 @@ const fetchAllBlogs = async (req, res) => {
   } else {
     page = 0;
   }
-
+  // console.log(limit,page,"kkk");
  
   console.log(obj, "i am obj");
   try {
@@ -62,7 +56,11 @@ const fetchAllBlogs = async (req, res) => {
       //  .populate("commentsArray")
       .lean()
       .exec();
-    return res.send(result);
+      // this will give filtered result means if there only 2 records then you need to give 
+      // 2 records to front end so that it can make that much button
+      const totalPages=Math.ceil(await blogModel.find(obj).countDocuments());
+      console.log(totalPages,"totalPages")
+    return res.send({result,totalPages});
   } catch (err) {
     return res.status(500).send("something went wrong in get");
   }
