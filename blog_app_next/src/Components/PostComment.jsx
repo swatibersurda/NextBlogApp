@@ -1,15 +1,22 @@
 "use client";
 import React, { useState } from 'react'
 import styles from "../styles/Home.module.css"
+import { useRouter } from 'next/router';
 
 export const PostComment = ({item}) => {
   console.log(item,"item at postcomm")
+
     const [comm,setComment]=useState("");
+    const router=useRouter();
     const handleComment=async()=>{
         if(comm!==""){
-            const data=await fetch("",{
-                method:post,
-                body:JSON.stringify(comm),
+          const payload={
+            comm,
+            blog_id:item._id
+          }
+            const data=await fetch("http://localhost:3000/api/comments",{
+                method:"POST",
+                body:JSON.stringify(payload),
                 headers:{
                     "Content-Type":"application/json"
                 }
@@ -17,6 +24,9 @@ export const PostComment = ({item}) => {
 
             const res=await data.json();
             console.log(res,"res...")
+            // after commenting redirecting it to same page or same id page so that it can refecth the new posted
+            // comment.
+           router.push(`/individualPostPage/${item._id}`)
 
         }
     }
