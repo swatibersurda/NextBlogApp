@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import userModel from "@/Model/user.model";
 import blogModel from "@/Model/blog.model";
 // finding each author and admin's blogs
+import dbConnect from "@/Config/dbConnect";
+dbConnect();
 export default async (req, res) => {
   switch (req.method) {
     case "GET":
@@ -19,9 +21,11 @@ export default async (req, res) => {
 const getByID = async (req, res) => {
   console.log("reahing at blogidd..");
   try {
-    console.log(req.query, "ppp");
+    console.log(req.query.blogid, "ppp");
     // here id will come in query and the name of folder
-    const result = await blogModel.findById({ _id: req.query.blogid }).populate("commentsArray");
+    const result = await blogModel
+      .findById({ _id: req.query.blogid }).populate("commentsArray")
+      
     console.log(result, "resultt");
     res.status(200).json({ result: result, message: "getedByID" });
   } catch (err) {

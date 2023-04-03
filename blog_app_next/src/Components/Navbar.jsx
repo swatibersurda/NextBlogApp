@@ -7,17 +7,20 @@ import { useRouter } from "next/router";
 export const Navbar = () => {
   console.log("i am runing navbar");
   const [urll, setUrll] = useState("");
-
   const { push, query } = useRouter();
+  // SETTING THE INPUT
   const handleSearchParams = (val) => {
     setUrll(val);
   };
 
   useEffect(() => {
+    // IF A USER SEARCHING FOR TITLE OR CONTENT LENGTH >2 THEN IT SHOULD BE SETTED ON
+    // QUERY PARAMS AND SHOULD BE FETCHED BY HOME PAGE.
     if (urll.length > 2) {
       push({ query: { ...query, data: urll } });
     } else {
-      push("/");
+      // BE DEFAULT ON RENDER WE WANT TO SERACH DATA FOR PAGE 1.
+      push("/?page=1");
     }
   }, [urll]);
 
