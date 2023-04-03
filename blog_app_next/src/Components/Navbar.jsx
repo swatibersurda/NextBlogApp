@@ -4,11 +4,17 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
+// import {cookies} from "js-cookie";
 export const Navbar = () => {
   console.log("i am runing navbar");
   const [urll, setUrll] = useState("");
   const { push, query } = useRouter();
+  // const user=cookies.user?JSON.parse(cookies.user):"";
+  // console.log(user,"userat cookiess..")
+  
+  
   // SETTING THE INPUT
+
   const handleSearchParams = (val) => {
     setUrll(val);
   };
@@ -36,7 +42,7 @@ export const Navbar = () => {
         <Link className={`${styles.noDecoration}`} href={"/createpage"}>
           <li className={`${styles.navli}`}>CreatePage</li>
         </Link>
-        <Link className={`${styles.noDecoration}`} href={"/"}>
+        <Link className={`${styles.noDecoration}`} href={"/login"}>
           <li className={`${styles.navli}`}>Login</li>
         </Link>
         <Link className={`${styles.noDecoration}`} href={"/registeruser"}>

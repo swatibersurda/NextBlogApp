@@ -1,11 +1,10 @@
 "use-client";
-import Link from 'next/link';
-// import { Register } from '@/Components/Register'
+import { Register } from '@/Components/Register'
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 
-const registeruser = () => {
-  const [name, setName] = useState("");
+const registerauthor = () => {
+    const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -17,6 +16,7 @@ const registeruser = () => {
           name,
           email,
           password,
+          role:"author"
         };
         const data = await fetch("http://localhost:3000/api/register", {
           method: "POST",
@@ -58,9 +58,8 @@ const registeruser = () => {
         <br></br>
         <input type="submit" />
       </form>
-      <Link href="/registerauthor">For Posting Blog AUTHORSS</Link>
     </div>
   )
 }
 
-export default registeruser
+export default registerauthor
