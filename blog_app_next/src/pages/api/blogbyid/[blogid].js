@@ -24,7 +24,7 @@ const getByID = async (req, res) => {
     console.log(req.query.blogid, "ppp");
     // here id will come in query and the name of folder
     const result = await blogModel
-      .findById({ _id: req.query.blogid }).populate("commentsArray")
+      .findById({ _id: req.query.blogid }).populate("commentsArray").populate("user_id")
       
     console.log(result, "resultt");
     res.status(200).json({ result: result, message: "getedByID" });

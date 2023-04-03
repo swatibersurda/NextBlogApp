@@ -1,10 +1,14 @@
+import { IndividualCard } from '@/Components/IndividualCard'
+import { PostComment } from '@/Components/PostComment'
 import React from 'react'
-
-const individualid = ({result}) => {
+import styles from "../../styles/Home.module.css"
+const individualid = ({data}) => {
     // console.log(context.params.individualid,"kkk")
   return (
-    <div>
-      i am individual
+    <div className={`${styles.parentContainerindiServer}`}>
+     <IndividualCard item={data.result}/>
+     {/* HERE PASSED DATA ON POSTCOMMENT SO THAT THERE ALREADY DONE COMMENT CAN BE SHOWN.. */}
+     <PostComment item={data.result}/>
     </div>
   )
 }
