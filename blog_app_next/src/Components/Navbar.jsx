@@ -9,9 +9,9 @@ export const Navbar = () => {
   console.log("i am runing navbar");
   const [urll, setUrll] = useState("");
   const { push, query } = useRouter();
- 
+
   const parsecookies = parseCookies();
-  const user = parsecookies.user? JSON.parse(parsecookies.user) : "";
+  const user = parsecookies.user ? JSON.parse(parsecookies.user) : "";
   console.log(user.role, "iam parsed");
 
   // SETTING THE INPUT
@@ -37,12 +37,14 @@ export const Navbar = () => {
         <Link className={`${styles.noDecoration}`} href={"/"}>
           <li className={`${styles.navli}`}>HomePage</li>
         </Link>
+        <Link className={`${styles.noDecoration}`} href={"/login"}>
+          <li className={`${styles.navli}`}>Login</li>
+        </Link>
+        <Link className={`${styles.noDecoration}`} href={"/registeruser"}>
+          <li className={`${styles.navli}`}>Register</li>
+        </Link>
 
-        {user&&user.role!=="reader"?<> <Link className={`${styles.noDecoration}`} href={"/createpage"}>
-              <li className={`${styles.navli}`}>CreatePage</li>
-            </Link>
-        </>:<></>}
-        {/* {(user && user.role === "author") || user.role === "admin" ? (
+        {user && user.role !== "reader" ? (
           <>
             {" "}
             <Link className={`${styles.noDecoration}`} href={"/createpage"}>
@@ -51,16 +53,31 @@ export const Navbar = () => {
           </>
         ) : (
           <></>
-        )} */}
-        {/* <Link className={`${styles.noDecoration}`} href={"/createpage"}>
-          <li className={`${styles.navli}`}>CreatePage</li>
-        </Link> */}
-        <Link className={`${styles.noDecoration}`} href={"/login"}>
-          <li className={`${styles.navli}`}>Login</li>
-        </Link>
-        <Link className={`${styles.noDecoration}`} href={"/registeruser"}>
-          <li className={`${styles.navli}`}>Register</li>
-        </Link>
+        )}
+         
+         {user && user.role==="author" ? (
+          <>
+            {" "}
+            <Link className={`${styles.noDecoration}`} href={"/createpage"}>
+              <li className={`${styles.navli}`}>PostByAuthor</li>
+            </Link>
+          </>
+        ) : (
+          <></>
+        )} 
+
+   {user && user.role==="admin" ? (
+          <>
+            {" "}
+            <Link className={`${styles.noDecoration}`} href={"/createpage"}>
+              <li className={`${styles.navli}`}>AllUsersPost</li>
+            </Link>
+          </>
+        ) : (
+          <></>
+        )} 
+
+        
       </div>
 
       <div className={`${styles.inpuDiv}`}>
