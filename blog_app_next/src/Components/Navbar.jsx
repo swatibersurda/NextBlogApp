@@ -33,13 +33,13 @@ export const Navbar = () => {
         <Link className={`${styles.noDecoration}`} href={"/"}>
           <li className={`${styles.navli}`}>PostPage</li>
         </Link>
-        <Link className={`${styles.noDecoration}`} href={"/"}>
+        <Link className={`${styles.noDecoration}`} href={"/createpage"}>
           <li className={`${styles.navli}`}>CreatePage</li>
         </Link>
         <Link className={`${styles.noDecoration}`} href={"/"}>
           <li className={`${styles.navli}`}>Login</li>
         </Link>
-        <Link className={`${styles.noDecoration}`} href={"/"}>
+        <Link className={`${styles.noDecoration}`} href={"/registeruser"}>
           <li className={`${styles.navli}`}>Register</li>
         </Link>
       </div>

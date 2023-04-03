@@ -26,7 +26,9 @@ export const PostComment = ({item}) => {
             console.log(res,"res...")
             // after commenting redirecting it to same page or same id page so that it can refecth the new posted
             // comment.
+            setComment("")
            router.push(`/individualPostPage/${item._id}`)
+
 
         }
     }
