@@ -1,5 +1,5 @@
 "use-client";
-import { Register } from '@/Components/Register'
+// import { Register } from '@/Components/Register'
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 

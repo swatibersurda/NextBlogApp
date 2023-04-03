@@ -3,6 +3,7 @@ import { Login } from '@/Components/Login'
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import jscookies from "js-cookie"
+
 const login = () => {
     const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
