@@ -27,8 +27,8 @@ const login = () => {
     //   if (result.newUser) {
     //     router.push("/?page=1");
     //   }
-      if(result.error){
-        alert.message(error.message)
+      if(result.err){
+        alert.message(err.message)
       }
       else{
         jscookies.set("token",result.token)

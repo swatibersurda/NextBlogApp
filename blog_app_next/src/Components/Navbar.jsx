@@ -9,10 +9,10 @@ export const Navbar = () => {
   console.log("i am runing navbar");
   const [urll, setUrll] = useState("");
   const { push, query } = useRouter();
-
+ 
   const parsecookies = parseCookies();
-  const user = parsecookies.user ? JSON.parse(parsecookies.user) : "";
-  console.log(user, "iam parsed");
+  const user = parsecookies.user? JSON.parse(parsecookies.user) : "";
+  console.log(user.role, "iam parsed");
 
   // SETTING THE INPUT
 
@@ -34,13 +34,24 @@ export const Navbar = () => {
   return (
     <div className={`${styles.divContainer}`}>
       <div className={`${styles.navDiv}`}>
-
         <Link className={`${styles.noDecoration}`} href={"/"}>
           <li className={`${styles.navli}`}>HomePage</li>
         </Link>
+
         {user&&user.role!=="reader"?<> <Link className={`${styles.noDecoration}`} href={"/createpage"}>
-          <li className={`${styles.navli}`}>CreatePage</li>
-        </Link></>:<></>}
+              <li className={`${styles.navli}`}>CreatePage</li>
+            </Link>
+        </>:<></>}
+        {/* {(user && user.role === "author") || user.role === "admin" ? (
+          <>
+            {" "}
+            <Link className={`${styles.noDecoration}`} href={"/createpage"}>
+              <li className={`${styles.navli}`}>CreatePage</li>
+            </Link>
+          </>
+        ) : (
+          <></>
+        )} */}
         {/* <Link className={`${styles.noDecoration}`} href={"/createpage"}>
           <li className={`${styles.navli}`}>CreatePage</li>
         </Link> */}
