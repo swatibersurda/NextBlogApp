@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import jscookies from "js-cookie"
+import jscookies from "js-cookie";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,18 +24,16 @@ export const Login = () => {
       });
       const result = await data.json();
       console.log(result, "result after login");
-    //   if (result.newUser) {
-    //     router.push("/?page=1");
-    //   }
-      if(result.error){
-        alert.message(error.message)
+      //   if (result.newUser) {
+      //     router.push("/?page=1");
+      //   }
+      if (result.error) {
+        alert.message(error.message);
+      } else {
+        jscookies.set("token", result.token);
+        jscookies.set("user", JSON.stringify(result.user));
+        router.push("/?page=1");
       }
-      else{
-        jscookies.set("token",result.token)
-      jscookies.set("user",JSON.stringify(result.user))
-      router.push("/?page=1")
-      }
-
     }
   };
 
@@ -58,7 +56,6 @@ export const Login = () => {
         <br></br>
         <input type="submit" />
       </form>
-      
     </div>
   );
 };

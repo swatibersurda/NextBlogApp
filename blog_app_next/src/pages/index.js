@@ -2,7 +2,6 @@ import Head from "next/head";
 import { PaginatedComponent } from "@/Components/PaginatedComponent";
 import { BlogListing } from "@/Components/BlogListing";
 export default function Home({ products }) {
-  console.log("i am runing home");
   return (
     <>
       <Head>
@@ -12,7 +11,6 @@ export default function Home({ products }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        hiii
         <BlogListing products={products.result} />
         <PaginatedComponent totalPages={products?.totalPages} />
       </main>
@@ -23,13 +21,10 @@ export default function Home({ products }) {
 export async function getServerSideProps(content) {
   const page = Number(content?.query?.page) || 1;
   const dataToSearch = content?.query?.data || "";
-
-  // console.log(queryData,"queryData...")
   const data = await fetch(
     `http://localhost:3000/api/blogs?page=${page}&data=${dataToSearch}`
   );
   const res = await data.json();
-  // console.log(result,"ooo");
 
   return {
     props: {

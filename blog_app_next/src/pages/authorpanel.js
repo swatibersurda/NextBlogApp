@@ -2,13 +2,15 @@ import { AdminLayout } from "@/Components/AdminLayout";
 import { PaginatedComponent } from "@/Components/PaginatedComponent";
 import React from "react";
 import { parseCookies } from "nookies";
+import { AuthorLayout } from "@/Components/AuthorLayout";
 
 const authorpanel = ({ data }) => {
   console.log(data, "data by authorr...");
   return (
     <div>
       {/* <AdminLayout data={data}/> */}
-      {/* <PaginatedComponent totalPages={data.totalPages}/> */}i am
+      {/* <PaginatedComponent totalPages={data.totalPages}/> */}
+      <AuthorLayout data={data.result}/>
     </div>
   );
 };

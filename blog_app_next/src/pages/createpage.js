@@ -9,15 +9,13 @@ const createpage = () => {
   const [content, setContent] = useState("");
   const [imageUrl, setImage] = useState("");
   const parsecookies = parseCookies();
-  const router=useRouter();
+  const router = useRouter();
   const user = parsecookies.user ? JSON.parse(parsecookies.user) : "";
-  console.log(user.role,user._id, "iam parsed");
-  console.log(title, content, imageUrl, "jjjj");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const imageUrlLink = await imageCloudLink();
-    console.log(imageUrlLink, "i am back");
+
     const payload = {
       title,
       content,
@@ -27,7 +25,7 @@ const createpage = () => {
           : imageUrlLink,
       user_id: user._id,
     };
-    console.log(payload, "payload at createpage..");
+
     const result = await fetch(`http://localhost:3000/api/blogs`, {
       method: "POST",
       body: JSON.stringify(payload),
@@ -36,10 +34,9 @@ const createpage = () => {
       },
     });
     const postedResult = await result.json();
-    console.log(postedResult, "ppp");
 
-    if(postedResult.blogs){
-      router.push("/?page=1")
+    if (postedResult.blogs) {
+      router.push("/?page=1");
     }
   };
 

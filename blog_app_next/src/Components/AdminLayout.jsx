@@ -3,9 +3,10 @@ import { PaginatedComponent } from "./PaginatedComponent";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+
 export const AdminLayout = ({ data }) => {
-  console.log(data, "data");
   const router=useRouter();
+
   const handleDeleteBlog=async(id)=>{
   
    const data=await fetch(`http://localhost:3000/api/blogbyid/${id}`,{
@@ -15,7 +16,6 @@ export const AdminLayout = ({ data }) => {
     // }
    })
    const result=await data.json()
-    console.log(result ,"resulttt after deletion")
     if(result.message){
        alert("deleted sucessfully")
        router.push("/?page=1")

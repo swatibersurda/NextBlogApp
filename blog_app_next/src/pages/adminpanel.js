@@ -6,7 +6,7 @@ const adminpanel = ({data}) => {
   return (
     <div>
       <AdminLayout data={data}/>
-      <PaginatedComponent totalPages={data.totalPages}/>
+      {/* <PaginatedComponent totalPages={data.totalPages}/> */}
     </div>
   )
 }
@@ -17,6 +17,7 @@ export default adminpanel
 export async function getServerSideProps(context) {
     const page = Number(context?.query?.page) || 1;
   const dataToSearch = context?.query?.data || "";
+  
   
     // console.log(queryData,"queryData...")
     const data = await fetch(
@@ -33,3 +34,4 @@ export async function getServerSideProps(context) {
       },
     };
   }
+

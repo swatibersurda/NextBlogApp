@@ -35,7 +35,7 @@ const fetchAllBlogs = async (req, res) => {
   }
   // /If pages means you need paginated data there you need limit concept
   if (req.query.page) {
-    limit = 5;
+    limit = 4;
   } else {
     limit = 0;
   }
