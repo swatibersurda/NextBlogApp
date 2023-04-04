@@ -40,10 +40,10 @@ export const PostComment = ({item}) => {
       </div>
       
       {item?.commentsArray&&item.commentsArray.map((itemss)=>{
-        return <div className={`${styles.userCommentedDiv}`}>
+        return <div key={item._id} className={`${styles.userCommentedDiv}`}>
           <div className={`${styles.userCommentedimageDiv}`}>
            {/* <img src={item.image} width={"100%"} height={"100%"}/> */}
-          {item.user_id._id}
+          {item.user_id.name}
           </div>
           <div className={`${styles.userCommentDiv}`}></div>
           {itemss.comm}

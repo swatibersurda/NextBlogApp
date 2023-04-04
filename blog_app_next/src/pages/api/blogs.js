@@ -26,6 +26,7 @@ const fetchAllBlogs = async (req, res) => {
   let limit;
   let sorting;
   let page;
+  
   // let total=await blogModel.find(count());
   // console.log(total,"total")
   if (req.query.data) {
@@ -53,7 +54,6 @@ const fetchAllBlogs = async (req, res) => {
       .find(obj)
       .limit(limit)
       .skip(page)
-      //  .populate("commentsArray")
       .lean()
       .exec();
     // this will give filtered result means if there only 2 records then you need to give

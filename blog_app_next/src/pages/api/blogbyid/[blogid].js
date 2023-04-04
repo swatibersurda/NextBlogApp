@@ -3,6 +3,7 @@ import userModel from "@/Model/user.model";
 import blogModel from "@/Model/blog.model";
 // finding each author and admin's blogs
 import dbConnect from "@/Config/dbConnect";
+// import blogs from "../blogs";
 dbConnect();
 export default async (req, res) => {
   switch (req.method) {
@@ -24,7 +25,9 @@ const getByID = async (req, res) => {
     console.log(req.query.blogid, "ppp");
     // here id will come in query and the name of folder
     const result = await blogModel
-      .findById({ _id: req.query.blogid }).populate("user_id").populate("commentsArray")
+      .findById({ _id: req.query.blogid })
+      .populate("user_id")
+      .populate("commentsArray");
     // .findById({ _id: req.query.blogid }).populate("user_id")
 
     console.log(result, "resultt");
@@ -39,14 +42,14 @@ const deleteById = async (req, res) => {
   console.log(req.query.blogid, "bcxsvbxcs", userModel);
   // FIRST DELETE BLOG FROM BLOGS COLLECTION THEN DELETE IT FROM USER'S BLOGS ARRAY..
   const result = await blogModel.findByIdAndDelete({ _id: req.query.blogid });
+  console.log(result, "mmm");
   try {
-    await blogs.save();
     await userModel.findOneAndUpdate(
       { _id: req.body.user_id },
       { $pull: { "blogsArray": req.query.blogid } }
     );
 
-    return res.status(204).json({ message: "Deleted Sucessfully..." });
+    return res.json({ message: "Deleted Sucessfully..." });
   } catch (err) {
     return res.status(500).json({ message: "err while deleting" });
   }

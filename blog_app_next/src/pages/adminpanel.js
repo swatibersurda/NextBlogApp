@@ -6,7 +6,7 @@ const adminpanel = ({data}) => {
   return (
     <div>
       <AdminLayout data={data}/>
-      {/* <PaginatedComponent totalPages={data.totalPages}/> */}
+      <PaginatedComponent totalPages={data.totalPages}/>
     </div>
   )
 }
