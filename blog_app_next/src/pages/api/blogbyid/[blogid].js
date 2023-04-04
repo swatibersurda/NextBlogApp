@@ -56,7 +56,7 @@ const deleteById = async (req, res) => {
 };
 
 const updateById = async (req, res) => {
-  console.log(req.query.blogid, "immm");
+  console.log(req.query, "immm",req.body);
   try {
     const result = await blogModel.findByIdAndUpdate(
       { _id: req.query.blogid },

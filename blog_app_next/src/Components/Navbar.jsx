@@ -58,7 +58,7 @@ export const Navbar = () => {
         {user && user.role === "author" ? (
           <>
             {" "}
-            <Link className={`${styles.noDecoration}`} href={"/createpage"}>
+            <Link className={`${styles.noDecoration}`} href={"/authorpanel"}>
               <li className={`${styles.navli}`}>PostByAuthor</li>
             </Link>
           </>

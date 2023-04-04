@@ -20,6 +20,7 @@ export async function getServerSideProps(context) {
   
     // console.log(queryData,"queryData...")
     const data = await fetch(
+        // HERE ADMIN WILL FATCH ALL USERS'S ALL BLOGS
       `http://localhost:3000/api/blogs?page=${page}&data=${dataToSearch}`
       
     );

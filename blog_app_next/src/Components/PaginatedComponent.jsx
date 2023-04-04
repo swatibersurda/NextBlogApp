@@ -25,7 +25,7 @@ export const PaginatedComponent=({totalPages})=>{
             {/* <button  onClick={()=>setPage(page+1)}>Next</button>
             <button disabled={page===1} onClick={()=>setPage(page-1)}>Previous</button> */}
             {buttonArray.map((item,index)=>{ 
-               return <button value={index+1} onClick={()=>setPage(index+1)}>{index+1}</button> 
+               return <button key={item.index} value={index+1} onClick={()=>setPage(index+1)}>{index+1}</button> 
              })}
         </div>
     )

@@ -20,15 +20,22 @@ const  updateblog = () => {
     e.preventDefault();
     const imageUrlLink = await imageCloudLink();
     console.log(imageUrlLink, "i am back");
-    const payload = {
-      title,
-      content,
-      image:
-        imageUrl === ""
+    let payload={};
+    // Incase user do not want to edit any other thing then will use the privious one and will not append everything on payload
+    // only things which are edited will be sent to update.
+    if(title!==""){
+      payload.title=title
+    }
+    if(content!==""){
+      payload.content=content
+    }
+
+    payload.image=imageUrl === ""
           ? "https://enviragallery.com/wp-content/uploads/2016/05/Set-Default-Featured-Image.jpg"
-          : imageUrlLink,
-      user_id: user._id,
-    };
+          : imageUrlLink;
+          payload.user_id=user._id
+
+    
     console.log(payload, "payload at createpage..");
     const result = await fetch(`http://localhost:3000/api/blogbyid/${router.query.updateblog}`, {
       method: "PATCH",
@@ -40,9 +47,9 @@ const  updateblog = () => {
     const postedResult = await result.json();
     console.log(postedResult, "ppp");
 
-    // if(postedResult.blogs){
-    //   router.push("/?page=1")
-    // }
+    if(postedResult.result){
+      router.push("/?page=1")
+    }
   };
 
   const imageCloudLink = async () => {

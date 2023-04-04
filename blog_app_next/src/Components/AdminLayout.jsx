@@ -31,6 +31,7 @@ export const AdminLayout = ({ data }) => {
   return (
     <div>
       <table>
+        <thead>
         <th>Image</th>
         <th>Title</th>
         {/* <th>Content</th> */}
@@ -39,6 +40,7 @@ export const AdminLayout = ({ data }) => {
         <th>View</th>
         <th>Delete</th>
         <th>Update</th>
+        </thead>
         <tbody>
           {data.result &&
             data.result.map((item) => {
