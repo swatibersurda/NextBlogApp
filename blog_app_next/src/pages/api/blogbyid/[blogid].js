@@ -24,8 +24,9 @@ const getByID = async (req, res) => {
     console.log(req.query.blogid, "ppp");
     // here id will come in query and the name of folder
     const result = await blogModel
-      .findById({ _id: req.query.blogid }).populate("commentsArray").populate("user_id")
-      
+      .findById({ _id: req.query.blogid }).populate("user_id").populate("commentsArray")
+    // .findById({ _id: req.query.blogid }).populate("user_id")
+
     console.log(result, "resultt");
     res.status(200).json({ result: result, message: "getedByID" });
   } catch (err) {
@@ -42,7 +43,7 @@ const deleteById = async (req, res) => {
     await blogs.save();
     await userModel.findOneAndUpdate(
       { _id: req.body.user_id },
-      { $pull: { blogsArray: req.query.blogid } }
+      { $pull: { "blogsArray": req.query.blogid } }
     );
 
     return res.status(204).json({ message: "Deleted Sucessfully..." });

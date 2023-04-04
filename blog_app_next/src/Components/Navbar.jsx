@@ -54,8 +54,8 @@ export const Navbar = () => {
         ) : (
           <></>
         )}
-         
-         {user && user.role==="author" ? (
+
+        {user && user.role === "author" ? (
           <>
             {" "}
             <Link className={`${styles.noDecoration}`} href={"/createpage"}>
@@ -64,20 +64,18 @@ export const Navbar = () => {
           </>
         ) : (
           <></>
-        )} 
+        )}
 
-   {user && user.role==="admin" ? (
+        {user && user.role === "admin" ? (
           <>
             {" "}
-            <Link className={`${styles.noDecoration}`} href={"/createpage"}>
-              <li className={`${styles.navli}`}>AllUsersPost</li>
+            <Link className={`${styles.noDecoration}`} href={`/adminpanel?page=1`}>
+              <li className={`${styles.navli}`}>AdminPanel</li>
             </Link>
           </>
         ) : (
           <></>
-        )} 
-
-        
+        )}
       </div>
 
       <div className={`${styles.inpuDiv}`}>
