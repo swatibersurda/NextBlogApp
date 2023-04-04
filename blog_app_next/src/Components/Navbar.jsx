@@ -6,10 +6,15 @@ import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import jscookies from "js-cookie";
 export const Navbar = () => {
+  console.log("i am runing navbar");
   const [urll, setUrll] = useState("");
   const { push, query, pathname } = useRouter();
   const parsecookies = parseCookies();
+  // const [user,setUser]=useState("")
+  // console.log(user,"useee")
   const user = parsecookies.user ? JSON.parse(parsecookies.user) : "";
+  // console.log(user.role, "iam parsed");
+  // console.log(query, pathname, "querypathh..");
 
   // SETTING THE INPUT
 
@@ -26,6 +31,10 @@ export const Navbar = () => {
       // BE DEFAULT ON RENDER WE WANT TO SERACH DATA FOR PAGE 1.
       push("/?page=1");
     }
+    // note always do browser releted stuff on use effect to prevent hydration errror.
+    //  let userr = parsecookies.user ? JSON.parse(parsecookies.user) : "";
+    //  setUser(userr)
+
   }, [urll]);
 
   const handleLogout = () => {
@@ -55,7 +64,6 @@ export const Navbar = () => {
             {/* Means if there is no user these login and regiter should be visible */}
 
             <li className={`${styles.navli}`}>
-              {" "}
               <Link className={`${styles.noDecoration}`} href={"/login"}>
                 Login
               </Link>
@@ -101,11 +109,9 @@ export const Navbar = () => {
           <>
             {" "}
             <li className={`${styles.navli}`}>
-              AdminPanel
-              <Link
-                className={`${styles.noDecoration}`}
-                href={`/adminpanel`}
-              ></Link>
+              <Link className={`${styles.noDecoration}`} href={`/adminpanel`}>
+                AdminPanel
+              </Link>
             </li>
           </>
         ) : (

@@ -45,6 +45,7 @@
 }
 .noDecoration{
   text-decoration: none;
+  color:white;
 }
 .parentListDiv{
   display: flex;

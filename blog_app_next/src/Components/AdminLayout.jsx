@@ -34,7 +34,6 @@ export const AdminLayout = ({ data }) => {
         <thead>
         <th>Image</th>
         <th>Title</th>
-        {/* <th>Content</th> */}
         <th>Role</th>
         {/* admin see the particular blog as well */}
         <th>View</th>
@@ -45,7 +44,7 @@ export const AdminLayout = ({ data }) => {
           {data.result &&
             data.result.map((item) => {
               return (
-                <tr>
+                <tr key={item._id}>
                   <td>
                     <img src={item.image} width={"20px"} />
                   </td>
