@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
+import { v4 as uuid } from "uuid";
 
 export const PostComment = ({ item }) => {
   const [comm, setComment] = useState("");
@@ -38,9 +39,9 @@ export const PostComment = ({ item }) => {
       {item?.commentsArray &&
         item.commentsArray.map((itemss) => {
           return (
-            <div key={item._id} className={`${styles.userCommentedDiv}`}>
+            <div key={uuid()} className={`${styles.userCommentedDiv}`}>
               <div className={`${styles.userCommentedimageDiv}`}>
-                {item.user_id.name}
+                {item._id}
               </div>
               <div className={`${styles.userCommentDiv}`}></div>
               {itemss.comm}

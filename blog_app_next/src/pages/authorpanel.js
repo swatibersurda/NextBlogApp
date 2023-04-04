@@ -5,12 +5,11 @@ import { parseCookies } from "nookies";
 import { AuthorLayout } from "@/Components/AuthorLayout";
 
 const authorpanel = ({ data }) => {
-  console.log(data, "data by authorr...");
   return (
     <div>
       {/* <AdminLayout data={data}/> */}
       {/* <PaginatedComponent totalPages={data.totalPages}/> */}
-      <AuthorLayout data={data.result}/>
+      <AuthorLayout data={data.result} />
     </div>
   );
 };

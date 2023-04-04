@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import jscookies from "js-cookie";
 export const Navbar = () => {
-  console.log("i am runing navbar");
+  
   const [urll, setUrll] = useState("");
   const { push, query, pathname } = useRouter();
   const parsecookies = parseCookies();

@@ -26,8 +26,8 @@ const getByID = async (req, res) => {
     // here id will come in query and the name of folder
     const result = await blogModel
       .findById({ _id: req.query.blogid })
-      .populate("user_id")
-      .populate("commentsArray");
+      .populate("user_id").populate("commentsArray")
+      
     // .findById({ _id: req.query.blogid }).populate("user_id")
 
     console.log(result, "resultt");
@@ -56,7 +56,7 @@ const deleteById = async (req, res) => {
 };
 
 const updateById = async (req, res) => {
-  console.log(req.query, "immm",req.body);
+  console.log(req.query, "immm", req.body);
   try {
     const result = await blogModel.findByIdAndUpdate(
       { _id: req.query.blogid },

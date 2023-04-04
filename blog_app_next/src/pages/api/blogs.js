@@ -24,9 +24,8 @@ const fetchAllBlogs = async (req, res) => {
   console.log(req.query, "reqq");
   let obj = {};
   let limit;
-  let sorting;
   let page;
-  
+
   // let total=await blogModel.find(count());
   // console.log(total,"total")
   if (req.query.data) {
@@ -94,7 +93,7 @@ const postBlog = async (req, res) => {
     await blogs.save();
     await userModel.findOneAndUpdate(
       { _id: req.body.user_id },
-      { $push: {"blogsArray": blogs } }
+      { $push: { "blogsArray": blogs } }
     );
   } catch (err) {
     return console.log(err);

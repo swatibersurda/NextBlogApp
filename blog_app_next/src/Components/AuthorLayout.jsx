@@ -8,24 +8,19 @@ import { useRouter } from "next/router";
 // MdDelete
 export const AuthorLayout = ({ data }) => {
     const router=useRouter();
-  console.log(data, "data at jsx");
   
   const handleDeleteBlog=async(id)=>{
   
     const data=await fetch(`http://localhost:3000/api/blogbyid/${id}`,{
      method:"DELETE",
-     // headers:{
-     //     "Content-Type":"appliction/json"
-     // }
     })
     const result=await data.json()
-     console.log(result ,"resulttt after deletion")
      if(result.message){
         alert("deleted sucessfully")
         router.push("/authorpanel")
      }
      else{
-         alert(result.err)
+         alert(result.message)
      }
    }
  
@@ -35,7 +30,7 @@ export const AuthorLayout = ({ data }) => {
       {data?.blogsArray &&
         data.blogsArray.map((item) => {
           return (
-            <div className={`${styles.gridChild}`}>
+            <div className={`${styles.gridChild}`} key={item._id}>
               <div>
                 <img src={item.image} width={"100%"} height={"30%"} />
                 {/* <div> */}
