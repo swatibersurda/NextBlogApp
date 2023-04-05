@@ -5,7 +5,9 @@ import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 
 export const AdminLayout = ({ data }) => {
+  console.log(data,"datain admin")
   const router = useRouter();
+
 
   const handleDeleteBlog = async (id) => {
     const data = await fetch(`http://localhost:3000/api/blogbyid/${id}`, {
@@ -28,6 +30,7 @@ export const AdminLayout = ({ data }) => {
         <thead className={`${styles.theadd}`} >
           <th className={`${styles.tabletdth} ${styles.theadd}`} >Image</th>
           <th className={`${styles.tabletdth} ${styles.theadd}`} >Title</th>
+          <th className={`${styles.tabletdth} ${styles.theadd}`} >Role</th>
           {/* admin see the particular blog as well */}
           <th className={`${styles.tabletdth} ${styles.theadd}`} >View</th>
           <th className={`${styles.tabletdth} ${styles.theadd}`} >Delete</th>
@@ -42,6 +45,7 @@ export const AdminLayout = ({ data }) => {
                     <img src={item.image} width={"50%"} height={"30%"} />
                   </td>
                   <td className={`${styles.tabletdth}`}>{item.title}</td>
+                  <td className={`${styles.tabletdth}`}>{item.user_id.role}</td>
 
                   <td className={`${styles.tabletdth}`} >
                     <Link href={`/individualPostPage/${item._id}`}><button className={`${styles.tableButton}`}>VIEW</button></Link>

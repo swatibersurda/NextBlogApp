@@ -34,7 +34,7 @@ const fetchAllBlogs = async (req, res) => {
   }
   // /If pages means you need paginated data there you need limit concept
   if (req.query.page) {
-    limit = 4;
+    limit = 3;
   } else {
     limit = 0;
   }
@@ -52,7 +52,7 @@ const fetchAllBlogs = async (req, res) => {
     const result = await blogModel
       .find(obj)
       .limit(limit)
-      .skip(page)
+      .skip(page).populate("user_id")
       .lean()
       .exec();
     // this will give filtered result means if there only 2 records then you need to give

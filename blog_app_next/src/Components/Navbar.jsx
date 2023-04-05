@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import jscookies from "js-cookie";
+import { GoPerson } from "react-icons/go";
 export const Navbar = () => {
   const [urll, setUrll] = useState("");
   const { push, query, pathname } = useRouter();
@@ -42,129 +43,20 @@ export const Navbar = () => {
   };
 
   return (
-    // <div className={`${styles.divContainer}`}>
-    //   <div className={`${styles.navDiv}`}>
-    //     <li className={`${styles.navli}`}>
-    //       {" "}
-    //       <Link className={`${styles.noDecoration}`} href={"/?page=1"}>
-    //         HomePage{" "}
-    //       </Link>
-    //     </li>
-
-    //     {user ? (
-    //       <>
-    //         <li className={`${styles.navli}`} onClick={handleLogout}>
-    //           Logout
-    //         </li>
-    //       </>
-    //     ) : (
-    //       <>
-    //         {/* Means if there is no user these login and regiter should be visible */}
-
-    //         <li className={`${styles.navli}`}>
-    //           <Link className={`${styles.noDecoration}`} href={"/login"}>
-    //             Login
-    //           </Link>
-    //         </li>
-
-    //         <li className={`${styles.navli}`}>
-    //           <Link className={`${styles.noDecoration}`} href={"/registeruser"}>
-    //             Register
-    //           </Link>
-    //         </li>
-    //       </>
-    //     )}
-
-    //     {/* Reader should has no access of create a blog */}
-
-    //     {user && user.role !== "reader" ? (
-    //       <>
-    //         {" "}
-    //         <li className={`${styles.navli}`}>
-    //           <Link className={`${styles.noDecoration}`} href={"/createpage"}>
-    //             CreatePage
-    //           </Link>
-    //         </li>
-    //       </>
-    //     ) : (
-    //       <></>
-    //     )}
-
-    //     {user && user.role === "author" ? (
-    //       <>
-    //         {" "}
-    //         <li className={`${styles.navli}`}>
-    //           <Link className={`${styles.noDecoration}`} href={"/authorpanel"}>
-    //             AuthorPost
-    //           </Link>
-    //         </li>
-    //       </>
-    //     ) : (
-    //       <></>
-    //     )}
-
-    //     {user && user.role === "admin" ? (
-    //       <>
-    //         {" "}
-    //         <li className={`${styles.navli}`}>
-    //           <Link className={`${styles.noDecoration}`} href={`/adminpanel`}>
-    //             AdminPanel
-    //           </Link>
-    //         </li>
-    //       </>
-    //     ) : (
-    //       <></>
-    //     )}
-    //   </div>
-    //   {/* means input should only be inside all blog page */}
-    //   {query.page || query.data ? (
-    //     <>
-    //       <div className={`${styles.inpuDiv}`}>
-    //         <input
-    //           className={`${styles.inputt}`}
-    //           value={urll}
-    //           onChange={(e) => handleSearchParams(e.target.value)}
-    //         />
-    //       </div>
-    //     </>
-    //   ) : (
-    //     <>""</>
-    //   )}
-    // </div>
-    // </div>
+   
     <nav className={`${styles.menu}`}>
       <ul className={`${styles.menuul}`}>
-        {/* <li className={`${styles.menuli}`}>
-          <Link className={`${styles.lilink} ${styles.lilinkhover}`} href={"/"}>
-            Home
+        <li className={`${styles.menuli}`}>
+          {" "}
+          <Link className={`${styles.lilink}`} href={"/?page=1"}>
+            Home{" "}
           </Link>
         </li>
 
-
-        <li className={`${styles.menuli}`}>
-          <Link className={`${styles.lilink} ${styles.lilinkover}`} href={"/"}>
-            Home
-          </Link>
-        </li>
-        <li className={`${styles.menuli}`}>
-          <Link className={`${styles.lilink} ${styles.lilinkHover}`} href={"/"}>
-            Home
-          </Link> */}
-        {/* </li> */}
-
-
-{/* gggg */}
-<li className={`${styles.menuli}`}>
-         {" "}
-           <Link className={`${styles.lilink}`} href={"/?page=1"}>
-             Home{" "}
-           </Link>
-         </li>
-
-       {user ? (
+        {user ? (
           <>
             <li className={`${styles.menuli}`} onClick={handleLogout}>
-            <Link className={`${styles.lilink}`} href={"/login"}>
+              <Link className={`${styles.lilink}`} href={"/login"}>
                 Logout
               </Link>
               {/* Logout */}
@@ -208,29 +100,43 @@ export const Navbar = () => {
             {" "}
             <li className={`${styles.menuli}`}>
               <Link className={`${styles.lilink}`} href={"/authorpanel"}>
-                Author
+                <GoPerson
+                  color="white"
+                  fontSize={"18px"}
+                  
+                ></GoPerson>{" "}
+               { } Author
               </Link>
             </li>
           </>
         ) : (
           <></>
         )}
-       {user && user.role === "admin" ? (
+        {user && user.role === "admin" ? (
           <>
             {" "}
             <li className={`${styles.menuli}`}>
               <Link className={`${styles.lilink}`} href={`/adminpanel`}>
-                Admin
+                {user.name}_Admin
               </Link>
             </li>
           </>
         ) : (
           <></>
         )}
-
       </ul>
-     
-     {query.page || query.data ?<><input className={`${styles.serchInput}`} value={urll} onChange={(e)=>setUrll(e.target.value)}/></>:<></>} 
+
+      {query.page || query.data ? (
+        <>
+          <input  placeholder="Search Title,Content"
+            className={`${styles.serchInput}`}
+            value={urll}
+            onChange={(e) => setUrll(e.target.value)}
+          />
+        </>
+      ) : (
+        <></>
+      )}
     </nav>
   );
 };

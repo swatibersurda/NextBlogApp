@@ -31,8 +31,10 @@ export const AuthorLayout = ({ data }) => {
         data.blogsArray.map((item) => {
           return (
             <div className={`${styles.gridChild}`} key={item._id}>
-              <div>
-                <img src={item.image} width={"100%"} height={"30%"} />
+              <div >
+                <div className={styles.autorPanelImageDiv}>
+                  <img src={item.image} width={"100%"} height={"100%"} /></div>
+                
                 {/* <div> */}
                   <h5>
                     Title:<i>{item.title}</i>
@@ -44,16 +46,16 @@ export const AuthorLayout = ({ data }) => {
                 <div className={`${styles.authorButtonpan}`}>
                     <div className={`${styles.iconDivs}`}>
                         <Link href={`/updatedBlog/${item._id}`} >
-                        <FaEdit color="purple" className={`${styles.iconn}`} ></FaEdit>
+                        <FaEdit color="#6b5b95" className={`${styles.iconn}`} ></FaEdit>
                         </Link>
                         </div>
                     <div className={`${styles.iconDivs}`}>
                         
-                        <MdDelete onClick={()=>handleDeleteBlog(item._id)} color="purple" className={`${styles.iconn}`}></MdDelete>
+                        <MdDelete onClick={()=>handleDeleteBlog(item._id)} color="#6b5b95" className={`${styles.iconn}`}></MdDelete>
                         
                         </div>
                         <div className={`${styles.iconDivs}`}>
-                        <Link href={`/individualPostPage/${item._id}`}><AiFillEye color="purple" className={`${styles.iconn}`}></AiFillEye></Link>
+                        <Link href={`/individualPostPage/${item._id}`}><AiFillEye color="#6b5b95" className={`${styles.iconn}`}></AiFillEye></Link>
                         </div>
 
                 </div>
