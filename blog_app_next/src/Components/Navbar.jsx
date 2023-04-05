@@ -29,7 +29,7 @@ export const Navbar = () => {
       push({ query: { ...query, data: urll } });
     } else {
       // BE DEFAULT ON RENDER WE WANT TO SERACH DATA FOR PAGE 1.
-      push("/?page=1");
+      push("/?page1");
     }
     // note always do browser releted stuff on use effect to prevent hydration errror.
     //  let userr = parsecookies.user ? JSON.parse(parsecookies.user) : "";
@@ -39,11 +39,10 @@ export const Navbar = () => {
   const handleLogout = () => {
     jscookies.remove("token", { path: "" });
     jscookies.remove("user", { path: "" });
-    push("/?page=1");
+    push("/login");
   };
 
   return (
-   
     <nav className={`${styles.menu}`}>
       <ul className={`${styles.menuul}`}>
         <li className={`${styles.menuli}`}>
@@ -53,19 +52,48 @@ export const Navbar = () => {
           </Link>
         </li>
 
-        {user ? (
+        {/* {user ? (
           <>
             <li className={`${styles.menuli}`} onClick={handleLogout}>
               <Link className={`${styles.lilink}`} href={"/login"}>
                 Logout
               </Link>
-              {/* Logout */}
             </li>
           </>
         ) : (
-          <>
-            {/* Means if there is no user these login and regiter should be visible */}
+          <><li className={`${styles.menuli}`}>
+              <Link className={`${styles.lilink}`} href={"/login"}>
+                Login
+              </Link>
+            </li>
+           <li className={`${styles.menuli}`}>
+              <Link className={`${styles.lilink}`} href={"/registeruser"}>
+                Register
+              </Link>
+            </li>
+          </>
+        )} */}
+        {/* experiment start here.. */}
 
+        {user ? (
+          <>
+            {" "}
+            <li className={`${styles.menuli}`}>
+              <Link
+                className={`${styles.lilink}`}
+                href={"/login"}
+                onClick={handleLogout}
+              >
+                Logout
+              </Link>
+            </li>
+          </>
+        ) : (
+          <></>
+        )}
+
+        {!user ? (
+          <>
             <li className={`${styles.menuli}`}>
               <Link className={`${styles.lilink}`} href={"/login"}>
                 Login
@@ -78,13 +106,26 @@ export const Navbar = () => {
               </Link>
             </li>
           </>
+        ) : (
+          <></>
         )}
+
+        {/* <li className={`${styles.menuli}`}>
+              <Link className={`${styles.lilink}`} href={"/login"}>
+                Login
+              </Link>
+            </li>
+            
+            <li className={`${styles.menuli}`}>
+              <Link className={`${styles.lilink}`} href={"/registeruser"}>
+                Register
+              </Link>
+            </li> */}
 
         {/* Reader should has no access of create a blog */}
 
         {user && user.role !== "reader" ? (
           <>
-            {" "}
             <li className={`${styles.menuli}`}>
               <Link className={`${styles.lilink}`} href={"/createpage"}>
                 Create
@@ -97,15 +138,10 @@ export const Navbar = () => {
 
         {user && user.role === "author" ? (
           <>
-            {" "}
             <li className={`${styles.menuli}`}>
               <Link className={`${styles.lilink}`} href={"/authorpanel"}>
-                <GoPerson
-                  color="white"
-                  fontSize={"18px"}
-                  
-                ></GoPerson>{" "}
-               { } Author
+                <GoPerson color="white" fontSize={"18px"}></GoPerson>
+                {} Author
               </Link>
             </li>
           </>
@@ -114,10 +150,9 @@ export const Navbar = () => {
         )}
         {user && user.role === "admin" ? (
           <>
-            {" "}
             <li className={`${styles.menuli}`}>
               <Link className={`${styles.lilink}`} href={`/adminpanel`}>
-                {user.name}_Admin
+                Admin
               </Link>
             </li>
           </>
@@ -128,7 +163,8 @@ export const Navbar = () => {
 
       {query.page || query.data ? (
         <>
-          <input  placeholder="Search Title,Content"
+          <input
+            placeholder="Search Title,Content"
             className={`${styles.serchInput}`}
             value={urll}
             onChange={(e) => setUrll(e.target.value)}

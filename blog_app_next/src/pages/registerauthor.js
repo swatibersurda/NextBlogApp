@@ -38,13 +38,13 @@ const registerauthor = () => {
     <h1 className={`${styles.textalignCenter}`}>REGISTER AUTHOR</h1>
 
        <form onSubmit={handleSubmit}>
-  <label className={`${styles.labell}`} for="name">Name</label>
+  <label className={`${styles.labell}`}  htmlFor="name">Name</label>
   <input value={name} type="text" className={`${styles.inputText}`}  id="name" placeholder="Your name.." onChange={(e) => setName(e.target.value)}/>
 
-  <label  className={`${styles.labell}`} for="email">Email</label>
+  <label  className={`${styles.labell}`}  htmlFor="email">Email</label>
   <input value={email} type="email" className= {`${styles.inputText}`}  id="email" placeholder="Your email.."  onChange={(e) => setEmail(e.target.value)}/>
 
-  <label  className={`${styles.labell}`} for="password">Password</label>
+  <label  className={`${styles.labell}`}  htmlFor="password">Password</label>
   <input type="password" className= {`${styles.inputText}`} id="password" placeholder="Your password." value={password}  onChange={(e) => setPassword(e.target.value)}/>
  <input className= {`${styles.inputSubmit} ${styles.inputSubmitHover}`} type="submit" value="Submit"/>
 </form>

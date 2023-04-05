@@ -31,8 +31,8 @@ const login = () => {
     //   }
       if(result.err){
         alert(result.err)
-        setEmail("");
-        setPassword("")
+        router.push("/registeruser")
+       
       }
       else{
         jscookies.set("token",result.token)
@@ -47,10 +47,10 @@ const login = () => {
       <h1 className={`${styles.textalignCenter}`}>LOGIN</h1>
 
          <form onSubmit={handleSubmit}>
-    <label className={`${styles.labell}`} for="email">Email</label>
+    <label className={`${styles.labell}`}  htmlFor="email">Email</label>
     <input value={email} className={`${styles.inputText}`} type="text" id="email" placeholder="Your name.." onChange={(e) => setEmail(e.target.value)}/>
 
-    <label  className={`${styles.labell}`} for="password">Password</label>
+    <label  className={`${styles.labell}`}  htmlFor="password">Password</label>
     <input value={password} className= {`${styles.inputText}`} type="password" id="password" placeholder="Your last name.."  onChange={(e) => setPassword(e.target.value)}/>
 
    

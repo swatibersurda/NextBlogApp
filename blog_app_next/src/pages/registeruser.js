@@ -37,7 +37,7 @@ const registeruser = () => {
       <h1 className={`${styles.textalignCenter}`}>REGISTER</h1>
 
       <form onSubmit={handleSubmit}>
-        <label className={`${styles.labell}`} for="name">
+        <label className={`${styles.labell}`}  htmlFor="name">
           Name
         </label>
         <input
@@ -48,7 +48,7 @@ const registeruser = () => {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <label className={`${styles.labell}`} for="email">
+        <label className={`${styles.labell}`}  htmlFor="email">
           Email
         </label>
         <input
@@ -59,7 +59,7 @@ const registeruser = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label className={`${styles.labell}`} for="password">
+        <label className={`${styles.labell}`}  htmlFor="password">
           Password
         </label>
         <input
