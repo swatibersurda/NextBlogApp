@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { PaginatedComponent } from "@/Components/PaginatedComponent";
 import { BlogListing } from "@/Components/BlogListing";
+import baseUrl from "../Config/baseUrl";
 export default function Home({ products }) {
   return (
     <>
@@ -22,7 +23,7 @@ export async function getServerSideProps(content) {
   const page = Number(content?.query?.page) || 1;
   const dataToSearch = content?.query?.data || "";
   const data = await fetch(
-    `http://localhost:3000/api/blogs?page=${page}&data=${dataToSearch}`
+    `${baseUrl}/api/blogs?page=${page}&data=${dataToSearch}`
   );
   const res = await data.json();
 

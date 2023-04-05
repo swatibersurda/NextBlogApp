@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css"
+import baseUrl from "../../Config/baseUrl";
 
 const  updateblog = () => {
   // THIS FIELDS WILL BE GIVEN BY USER AND USER_ID WILL BE EXTRACT FROM COOKIES
@@ -38,7 +39,7 @@ const  updateblog = () => {
 
     
     console.log(payload, "payload at createpage..");
-    const result = await fetch(`http://localhost:3000/api/blogbyid/${router.query.updateblog}`, {
+    const result = await fetch(`${baseUrl}/api/blogbyid/${router.query.updateblog}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
       headers: {

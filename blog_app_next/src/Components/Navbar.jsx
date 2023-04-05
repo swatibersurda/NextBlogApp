@@ -29,7 +29,7 @@ export const Navbar = () => {
       push({ query: { ...query, data: urll } });
     } else {
       // BE DEFAULT ON RENDER WE WANT TO SERACH DATA FOR PAGE 1.
-      push("/?page1");
+      push("/");
     }
     // note always do browser releted stuff on use effect to prevent hydration errror.
     //  let userr = parsecookies.user ? JSON.parse(parsecookies.user) : "";
@@ -52,28 +52,7 @@ export const Navbar = () => {
           </Link>
         </li>
 
-        {/* {user ? (
-          <>
-            <li className={`${styles.menuli}`} onClick={handleLogout}>
-              <Link className={`${styles.lilink}`} href={"/login"}>
-                Logout
-              </Link>
-            </li>
-          </>
-        ) : (
-          <><li className={`${styles.menuli}`}>
-              <Link className={`${styles.lilink}`} href={"/login"}>
-                Login
-              </Link>
-            </li>
-           <li className={`${styles.menuli}`}>
-              <Link className={`${styles.lilink}`} href={"/registeruser"}>
-                Register
-              </Link>
-            </li>
-          </>
-        )} */}
-        {/* experiment start here.. */}
+        
 
         {user ? (
           <>

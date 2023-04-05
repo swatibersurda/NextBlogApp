@@ -3,6 +3,7 @@ import { PostComment } from "@/Components/PostComment";
 import React from "react";
 import styles from "../../styles/Home.module.css";
 import { requireAuthentication } from "../../Components/requireAuthentication";
+import baseUrl from "../../Config/baseUrl"
 const individualid = ({ data }) => {
   // console.log(context.params.individualid,"kkk")
   return (
@@ -19,7 +20,7 @@ export default individualid;
 // calling protected route middleware.
 export const getServerSideProps = requireAuthentication(async (context) => {
   const id = context.params.individualid;
-  const data = await fetch(`http://localhost:3000/api/blogbyid/${id}`);
+  const data = await fetch(`${baseUrl}/api/blogbyid/${id}`);
   const result = await data.json();
   console.log(result, "result after fetchinfg one id");
 

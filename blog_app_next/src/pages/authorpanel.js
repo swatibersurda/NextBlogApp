@@ -4,6 +4,7 @@ import React from "react";
 import { parseCookies } from "nookies";
 import { AuthorLayout } from "@/Components/AuthorLayout";
 import { requireAuthentication } from "../Components/requireAuthentication";
+import baseUrl from "../Config/baseUrl";
 
 const authorpanel = ({ data }) => {
   return (
@@ -38,7 +39,7 @@ export const getServerSideProps = requireAuthentication(async (context) => {
 
   const data = await fetch(
     // HERE AUTHOR WILL FATCH ONLY HIS POSTED BLOG
-    `http://localhost:3000/api/userbyid/${x._id}`
+    `${baseUrl}/api/userbyid/${x._id}`
   );
   const res = await data.json();
   console.log(res, "ooo");

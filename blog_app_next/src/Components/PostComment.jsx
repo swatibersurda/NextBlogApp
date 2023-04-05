@@ -4,6 +4,8 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
 import {GoPerson} from "react-icons/go";
+import baseUrl from "../Config/baseUrl"
+
 
 export const PostComment = ({ item }) => {
   const [comm, setComment] = useState("");
@@ -14,7 +16,7 @@ export const PostComment = ({ item }) => {
         comm,
         blog_id: item._id,
       };
-      const data = await fetch("http://localhost:3000/api/comments", {
+      const data = await fetch(`${baseUrl}/api/comments`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {

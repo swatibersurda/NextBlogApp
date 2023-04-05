@@ -1,6 +1,7 @@
 import { AdminLayout } from '@/Components/AdminLayout';
 import { PaginatedComponent } from '@/Components/PaginatedComponent';
 import { requireAuthentication } from "../Components/requireAuthentication";
+import baseUrl from "../Config/baseUrl";
 
 import React from 'react'
 
@@ -19,7 +20,7 @@ export default adminpanel
     // Acessing cookies inside getserverside props which is inside browser
    const data = await fetch(
       // HERE AUTHOR WILL FATCH ONLY HIS POSTED BLOG
-      `http://localhost:3000/api/blogs`
+      `${baseUrl}/api/blogs`
     );
     const res = await data.json();
     return {

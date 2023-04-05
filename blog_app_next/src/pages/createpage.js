@@ -7,6 +7,7 @@ import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 import { requireAuthentication } from "@/Components/requireAuthentication";
+import baseUrl from "../Config/baseUrl";
 
 
 
@@ -18,6 +19,7 @@ const createpage = () => {
   const [content, setContent] = useState("");
   const [imageUrl, setImage] = useState("");
   const parsecookies = parseCookies();
+
   const router=useRouter();
   const user = parsecookies.user ? JSON.parse(parsecookies.user) : "";
   console.log(user.role,user._id, "iam parsed");
@@ -58,7 +60,7 @@ const createpage = () => {
   
  
 
-    const result = await fetch(`http://localhost:3000/api/blogs`, {
+    const result = await fetch(`${baseUrl}/api/blogs`, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {

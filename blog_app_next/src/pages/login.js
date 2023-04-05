@@ -1,10 +1,11 @@
 "use client";
-import { Login } from '@/Components/Login'
+// import { Login } from '@/Components/Login'
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 import jscookies from "js-cookie"
 import styles from "../styles/Home.module.css"
 import Link from 'next/link';
+import baseUrl from "../Config/baseUrl";
 
 const login = () => {
     const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ const login = () => {
         email,
         password,
       };
-      const data = await fetch("http://localhost:3000/api/login", {
+      const data = await fetch(`${baseUrl}/api/login`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {

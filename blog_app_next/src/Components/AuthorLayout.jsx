@@ -5,13 +5,14 @@ import {MdDelete} from "react-icons/md";
 import {AiFillEye} from "react-icons/ai";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import baseUrl from "../Config/baseUrl"
 // MdDelete
 export const AuthorLayout = ({ data }) => {
     const router=useRouter();
   
   const handleDeleteBlog=async(id)=>{
   
-    const data=await fetch(`http://localhost:3000/api/blogbyid/${id}`,{
+    const data=await fetch(`${baseUrl}/api/blogbyid/${id}`,{
      method:"DELETE",
     })
     const result=await data.json()

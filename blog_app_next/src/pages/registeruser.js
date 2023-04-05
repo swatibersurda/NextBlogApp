@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styles from "../styles/Home.module.css";
+import baseUrl from "../Config/baseUrl";
 
 const registeruser = () => {
   const [name, setName] = useState("");
@@ -18,7 +19,7 @@ const registeruser = () => {
         email,
         password,
       };
-      const data = await fetch("http://localhost:3000/api/register", {
+      const data = await fetch(`${baseUrl}/api/register`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {

@@ -5,13 +5,14 @@ import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 import { AiFillDelete } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
+import baseUrl from "../Config/baseUrl"
 
 export const AdminLayout = ({ data }) => {
   console.log(data, "datain admin");
   const router = useRouter();
 
   const handleDeleteBlog = async (id) => {
-    const data = await fetch(`http://localhost:3000/api/blogbyid/${id}`, {
+    const data = await fetch(`${baseUrl}/api/blogbyid/${id}`, {
       method: "DELETE",
     });
     const result = await data.json();
