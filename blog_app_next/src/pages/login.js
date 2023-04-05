@@ -30,7 +30,9 @@ const login = () => {
     //     router.push("/?page=1");
     //   }
       if(result.err){
-        alert.message(err.message)
+        alert(result.err)
+        setEmail("");
+        setPassword("")
       }
       else{
         jscookies.set("token",result.token)

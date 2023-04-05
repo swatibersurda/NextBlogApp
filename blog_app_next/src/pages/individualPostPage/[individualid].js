@@ -16,9 +16,10 @@ const individualid = ({data}) => {
 export default individualid
 
 
-export async function getServerSideProps({params:{individualid}}){
+export async function getServerSideProps({req,params:{individualid}}){
    console.log(individualid,"indiii....")
-
+     
+ 
     const data=await fetch(`http://localhost:3000/api/blogbyid/${individualid}`)
     const result=await data.json()
      console.log(result ,"resulttt at getserverside")
