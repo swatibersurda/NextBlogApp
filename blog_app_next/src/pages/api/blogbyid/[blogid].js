@@ -28,7 +28,6 @@ const getByID = async (req, res) => {
       .findById({ _id: req.query.blogid })
       .populate("user_id").populate("commentsArray")
       
-    // .findById({ _id: req.query.blogid }).populate("user_id")
 
     console.log(result, "resultt");
     res.status(200).json({ result: result, message: "getedByID" });

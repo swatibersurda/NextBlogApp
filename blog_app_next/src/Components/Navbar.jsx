@@ -97,7 +97,7 @@ export const Navbar = () => {
             {" "}
             <li className={`${styles.navli}`}>
               <Link className={`${styles.noDecoration}`} href={"/authorpanel"}>
-                PostByAuthor
+                AuthorPost
               </Link>
             </li>
           </>

@@ -1,8 +1,9 @@
 "use-client";
-import Link from 'next/link';
+import Link from "next/link";
 // import { Register } from '@/Components/Register'
-import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import styles from "../styles/Home.module.css";
 
 const registeruser = () => {
   const [name, setName] = useState("");
@@ -10,57 +11,84 @@ const registeruser = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
     if (email && name && password) {
-        const payload = {
-          name,
-          email,
-          password,
-        };
-        const data = await fetch("http://localhost:3000/api/register", {
-          method: "POST",
-          body: JSON.stringify(payload),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const result = await data.json();
-        console.log(result, "result after register");
-          if(result.newUser){
-            router.push("/login")
-          }
+      const payload = {
+        name,
+        email,
+        password,
+      };
+      const data = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await data.json();
+      console.log(result, "result after register");
+      if (result.newUser) {
+        router.push("/login");
       }
-    };
+    }
+  };
   return (
-    <div>
+    <div className={`${styles.formDiv}`}>
+      <h1 className={`${styles.textalignCenter}`}>REGISTER</h1>
+
       <form onSubmit={handleSubmit}>
-        NAME:
+        <label className={`${styles.labell}`} for="name">
+          Name
+        </label>
         <input
-          value={name}
           type="text"
+          className={`${styles.inputText}`}
+          id="name"
+          placeholder="Your name.."
           onChange={(e) => setName(e.target.value)}
         />
-        <br></br>
-        Email:
+
+        <label className={`${styles.labell}`} for="email">
+          Email
+        </label>
         <input
-          value={email}
           type="email"
+          className={`${styles.inputText}`}
+          id="email"
+          placeholder="Your email.."
           onChange={(e) => setEmail(e.target.value)}
         />
-        <br></br>
-        Password:
+
+        <label className={`${styles.labell}`} for="password">
+          Password
+        </label>
         <input
-          value={password}
           type="password"
+          className={`${styles.inputText}`}
+          id="password"
+          placeholder="Your password."
           onChange={(e) => setPassword(e.target.value)}
         />
-        <br></br>
-        <input type="submit" />
+        <input
+          className={`${styles.inputSubmit} ${styles.inputSubmitHover}`}
+          type="submit"
+          value="Submit"
+        />
       </form>
-      <Link href="/registerauthor">For Posting Blog AUTHORSS</Link>
+      <h3 className={`${styles.linkDecoration}`}>
+       
+        <Link className={`${styles.linkDecoration}`} href={"/registerauthor"}>
+        Want to Post your own? Click here
+        </Link>
+      </h3>
+      <h3 className={`${styles.linkDecoration}`}>
+       
+        <Link className={`${styles.linkDecoration}`} href={"/login"}>
+        Already Registered?Login here
+        </Link>
+      </h3>
     </div>
-  )
-}
+  );
+};
 
-export default registeruser
+export default registeruser;

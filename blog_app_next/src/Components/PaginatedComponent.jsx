@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 // PAGINATED COMPONENT
 export const PaginatedComponent = ({ totalPages }) => {
   // as our limit is 5;
-  const butt = Math.ceil(totalPages / 5);
+  const butt = Math.ceil(totalPages / 4);
   let buttonArray = new Array(butt).fill(0);
 
   const [page, setPage] = useState(1);

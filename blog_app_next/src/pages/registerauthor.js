@@ -2,6 +2,7 @@
 // import { Register } from '@/Components/Register'
 import { useRouter } from 'next/router';
 import React, { useState } from 'react'
+import styles from "../styles/Home.module.css"
 
 const registerauthor = () => {
     const [name, setName] = useState("");
@@ -33,32 +34,22 @@ const registerauthor = () => {
       }
     };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        NAME:
-        <input
-          value={name}
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br></br>
-        Email:
-        <input
-          value={email}
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br></br>
-        Password:
-        <input
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br></br>
-        <input type="submit" />
-      </form>
-    </div>
+    <div className={`${styles.formDiv}`}>
+    <h1 className={`${styles.textalignCenter}`}>REGISTER AUTHOR</h1>
+
+       <form onSubmit={handleSubmit}>
+  <label className={`${styles.labell}`} for="name">Name</label>
+  <input value={name} type="text" className={`${styles.inputText}`}  id="name" placeholder="Your name.." onChange={(e) => setName(e.target.value)}/>
+
+  <label  className={`${styles.labell}`} for="email">Email</label>
+  <input value={email} type="email" className= {`${styles.inputText}`}  id="email" placeholder="Your email.."  onChange={(e) => setEmail(e.target.value)}/>
+
+  <label  className={`${styles.labell}`} for="password">Password</label>
+  <input type="password" className= {`${styles.inputText}`} id="password" placeholder="Your password." value={password}  onChange={(e) => setPassword(e.target.value)}/>
+ <input className= {`${styles.inputSubmit} ${styles.inputSubmitHover}`} type="submit" value="Submit"/>
+</form>
+
+  </div>
   )
 }
 

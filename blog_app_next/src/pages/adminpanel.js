@@ -17,14 +17,12 @@ export default adminpanel
 
 
 export async function getServerSideProps(context) {
-    const page = Number(context?.query?.page) || 1;
-  const dataToSearch = context?.query?.data || "";
-  
+    
   
    
     const data = await fetch(
         // HERE ADMIN WILL FATCH ALL USERS'S ALL BLOGS
-      `http://localhost:3000/api/blogs?page=${page}&data=${dataToSearch}`
+      `http://localhost:3000/api/blogs`
       
     );
     const res = await data.json();

@@ -2,10 +2,11 @@
 import React, { useState } from "react";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import styles from "../../styles/Home.module.css"
 
 const  updateblog = () => {
   // THIS FIELDS WILL BE GIVEN BY USER AND USER_ID WILL BE EXTRACT FROM COOKIES
-  const [title, setTilte] = useState("");
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageUrl, setImage] = useState("");
   const parsecookies = parseCookies();
@@ -74,31 +75,25 @@ const  updateblog = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTilte(e.target.value)}
-        />
-        <input
-          type="text"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
+    <div className={`${styles.formDiv}`}>
+    <h1 className={`${styles.textalignCenter}`}>UPDATE Here</h1>
 
-        {/* showing uploaded file if that mediaurl has some string or image string then make it image or show in ui */}
-        <div className="responsive-img">
-          <img src={imageUrl ? URL.createObjectURL(imageUrl) : ""} />
-        </div>
-        <input type="submit" />
-      </form>
-    </div>
+       <form onSubmit={handleSubmit}>
+  <label className={`${styles.labell}`} for="title">Title</label>
+  <input type="text" className={`${styles.inputText}`} value={title}  id="title" placeholder="Title.." onChange={(e) =>setTitle(e.target.value)}/>
+
+  <label  className={`${styles.labell}`} for="content">Content</label>
+  <input type="text" className= {`${styles.inputText}`} value={content}  id="content" placeholder="Content.."  onChange={(e) => setContent(e.target.value)}/>
+
+  <label  className={`${styles.labell}`} for="imm">Image</label>
+  <input type="file" className= {`${styles.inputText}`} id="imm" placeholder="imagee"  onChange={(e) => setImage(e.target.files[0])}/>
+  <div className={`${styles.responsiveimg}`}>
+         <img src={imageUrl ? URL.createObjectURL(imageUrl) : ""} width={"100%"}   />
+         </div>
+ <input className= {`${styles.inputSubmit} ${styles.inputSubmitHover}`} type="submit" value="Submit"/>
+</form>
+
+  </div>
   );
 };
 
