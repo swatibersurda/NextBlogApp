@@ -108,6 +108,7 @@ App is desktop version.
 https://swatibersurdablogweb.netlify.app/
 
 ## Clone :
+https://github.com/swatibersurda/NextBlogApp.git
 
 
 
