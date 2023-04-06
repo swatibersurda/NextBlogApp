@@ -1,6 +1,6 @@
 # NextBlogAppAdvance
  
-This is a blog website where users can read blogs, and edit, update, and delete blogs.
+This is a blog website where reader can  read blogs.author can update, and delete,read his/her blogs and admin can update and delete and read all blogs.
 
 ## Tech Stack :
 The following is the tech stack I used to build this website:-
