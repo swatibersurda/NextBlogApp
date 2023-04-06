@@ -9,8 +9,8 @@ The following is the tech stack I used to build this website:-
 
 <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" width=20 /> CSS
 
-<img src="https://cdn-icons-png.flaticon.com/512/1199/1199124.png" width=20/> JavaScript
-<img src="https://cdn-icons-png.flaticon.com/512/1199/1199124.png" width=20/> Nextjs
+<img src="https://cdn-icons-png.flaticon.com/512/1199/1199124.png" width=20/> JavaScript <br><br>
+<img src="https://raw.githubusercontent.com/tandpfun/skill-icons/59059d9d1a2c092696dc66e00931cc1181a4ce1f/icons/NextJS-Dark.svg" width=20/> Nextjs
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDBz9g9mkTQyQZxAmOQ03R4L962dqCUdztjCSl79fYkQ&s" width=20 /> React
 
