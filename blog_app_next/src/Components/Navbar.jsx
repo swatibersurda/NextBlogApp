@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import jscookies from "js-cookie";
 import { GoPerson } from "react-icons/go";
+import dynamic from "next/dynamic";
 export const Navbar = () => {
   const [urll, setUrll] = useState("");
   const { push, query, pathname } = useRouter();
@@ -131,3 +132,4 @@ export const Navbar = () => {
     </nav>
   );
 };
+export default dynamic(() => Promise.resolve(Navbar), { ssr: false });
