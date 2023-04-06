@@ -3,5 +3,5 @@
 //     ? "https://advancedblogappswati.vercel.app"
 //     : "http://localhost:3000";
 
-const baseUrl= "https://advancedblogappswati.vercel.app"
+const baseUrl = "https://swatinextblog.vercel.app";
 export default baseUrl;
