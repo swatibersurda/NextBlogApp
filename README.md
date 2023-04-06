@@ -105,8 +105,7 @@ App is desktop version.
 
 
 ## Deploy Link :
-https://swatibersurdablogweb.netlify.app/
-
+https://swatinextblog.vercel.app/
 ## Clone :
 https://github.com/swatibersurda/NextBlogApp.git
 
