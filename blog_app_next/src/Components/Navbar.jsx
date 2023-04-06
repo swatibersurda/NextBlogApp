@@ -10,30 +10,20 @@ export const Navbar = () => {
   const [urll, setUrll] = useState("");
   const { push, query, pathname } = useRouter();
   const parsecookies = parseCookies();
-  // const [user,setUser]=useState("")
-  // console.log(user,"useee")
+
   const user = parsecookies.user ? JSON.parse(parsecookies.user) : "";
-  // console.log(user.role, "iam parsed");
-  // console.log(query, pathname, "querypathh..");
 
   // SETTING THE INPUT
-
-  const handleSearchParams = (val) => {
-    setUrll(val);
-  };
 
   useEffect(() => {
     // IF A USER SEARCHING FOR TITLE OR CONTENT LENGTH >2 THEN IT SHOULD BE SETTED ON
     // QUERY PARAMS AND SHOULD BE FETCHED BY HOME PAGE.
-    if (urll.length > 2) {
+    if (urll !== "") {
       push({ query: { ...query, data: urll } });
     } else {
       // BE DEFAULT ON RENDER WE WANT TO SERACH DATA FOR PAGE 1.
-      push("/");
+      push("/?page=1");
     }
-    // note always do browser releted stuff on use effect to prevent hydration errror.
-    //  let userr = parsecookies.user ? JSON.parse(parsecookies.user) : "";
-    //  setUser(userr)
   }, [urll]);
 
   const handleLogout = () => {
@@ -51,8 +41,6 @@ export const Navbar = () => {
             Home{" "}
           </Link>
         </li>
-
-        
 
         {user ? (
           <>
@@ -88,18 +76,6 @@ export const Navbar = () => {
         ) : (
           <></>
         )}
-
-        {/* <li className={`${styles.menuli}`}>
-              <Link className={`${styles.lilink}`} href={"/login"}>
-                Login
-              </Link>
-            </li>
-            
-            <li className={`${styles.menuli}`}>
-              <Link className={`${styles.lilink}`} href={"/registeruser"}>
-                Register
-              </Link>
-            </li> */}
 
         {/* Reader should has no access of create a blog */}
 

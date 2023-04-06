@@ -5,10 +5,9 @@ import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 import { AiFillDelete } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
-import baseUrl from "../Config/baseUrl"
+import baseUrl from "../Config/baseUrl";
 
 export const AdminLayout = ({ data }) => {
-  console.log(data, "datain admin");
   const router = useRouter();
 
   const handleDeleteBlog = async (id) => {
@@ -30,14 +29,13 @@ export const AdminLayout = ({ data }) => {
       <table className={`${styles.tableContainer}`}>
         <thead className={`${styles.theadd}`}>
           <tr>
-          <th className={`${styles.tableth}`}>Title</th>
-          <th className={`${styles.tableth}`}>Role</th>
-          {/* admin see the particular blog as well */}
-          <th className={`${styles.tableth}`}>View</th>
-          <th className={`${styles.tableth}`}>Delete</th>
-          <th className={`${styles.tableth}`}>Update</th>
+            <th className={`${styles.tableth}`}>Title</th>
+            <th className={`${styles.tableth}`}>Role</th>
+            {/* admin see the particular blog as well */}
+            <th className={`${styles.tableth}`}>View</th>
+            <th className={`${styles.tableth}`}>Delete</th>
+            <th className={`${styles.tableth}`}>Update</th>
           </tr>
-          
         </thead>
         <tbody>
           {data.result &&
@@ -48,7 +46,8 @@ export const AdminLayout = ({ data }) => {
                   <td className={`${styles.tabletd}`}>{item.user_id.role}</td>
 
                   <td className={`${styles.tabletd}`}>
-                    <Link href={`/individualPostPage/${item._id}`}>
+                    {/* <Link href={`/individualPostPage/${item._id}`}> */}
+                    <Link href={`/?page=1`}>
                       <button className={`${styles.tableButton}`}>
                         Detail
                       </button>

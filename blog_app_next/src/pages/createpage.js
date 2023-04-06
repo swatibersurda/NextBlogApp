@@ -1,6 +1,4 @@
- 
-
- 'use client';
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { parseCookies } from "nookies";
@@ -9,10 +7,6 @@ import styles from "../styles/Home.module.css";
 import { requireAuthentication } from "@/Components/requireAuthentication";
 import baseUrl from "../Config/baseUrl";
 
-
-
-
-
 const createpage = () => {
   // THIS FIELDS WILL BE GIVEN BY USER AND USER_ID WILL BE EXTRACT FROM COOKIES
   const [title, setTitle] = useState("");
@@ -20,60 +14,47 @@ const createpage = () => {
   const [imageUrl, setImage] = useState("");
   const parsecookies = parseCookies();
 
-  const router=useRouter();
+  const router = useRouter();
   const user = parsecookies.user ? JSON.parse(parsecookies.user) : "";
-  console.log(user.role,user._id, "iam parsed");
-  console.log(title, content, imageUrl, "jjjj");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if(title===""||content===""){
-      alert("please fill all details...")
+
+    if (title === "" || content === "") {
+      alert("please fill all details...");
       setTitle("");
       setContent("");
-    }
+    } else if (title !== "" && content !== "") {
+      let imageUrlLinkkk;
 
-    else if(title!=="" && content!==""){
+      if (imageUrl !== "") {
+        //Need to make link of cloudinary when image is selected
+        imageUrlLinkkk = await imageCloudLink();
+      }
 
-    
-    let imageUrlLinkkk;
-     
-    if(imageUrl!==""){
-  
-        //Need to make link of cloudinary when image is selected  
-      imageUrlLinkkk= await imageCloudLink();
-   
-    
-    }
+      const payload = {
+        title,
+        content,
+        image:
+          imageUrl === ""
+            ? "https://enviragallery.com/wp-content/uploads/2016/05/Set-Default-Featured-Image.jpg"
+            : imageUrlLinkkk,
+        user_id: user._id,
+      };
 
-    const payload = {
-      title,
-      content,
-      image:
-        imageUrl === ""
-          ? "https://enviragallery.com/wp-content/uploads/2016/05/Set-Default-Featured-Image.jpg"
-          : imageUrlLinkkk,
-      user_id: user._id,
-    };
-    console.log(payload, "payload at createpage..");
-  
- 
+      const result = await fetch(`${baseUrl}/api/blogs`, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const postedResult = await result.json();
 
-    const result = await fetch(`${baseUrl}/api/blogs`, {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const postedResult = await result.json();
-    console.log(postedResult, "ppp");
-
-    if(postedResult.blogs){
-      alert("added sucessfully")
-      router.push("/?page=1")
-    }
+      if (postedResult.blogs) {
+        alert("added sucessfully");
+        router.push("/?page=1");
+      }
     }
   };
 
@@ -98,49 +79,73 @@ const createpage = () => {
     return res.url;
   };
 
-  useEffect(()=>{
-    console.log("i am runing...")
-   if(!user){
-    router.push("/login")
-   }
-  },[])
-
-
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
 
   return (
-    
     <div className={`${styles.formDiv}`}>
-    <h1 className={`${styles.textalignCenter}`}>Post Blog Here</h1>
+      <h1 className={`${styles.textalignCenter}`}>Post Blog Here</h1>
 
-       <form onSubmit={handleSubmit}>
-  <label className={`${styles.labell}`}  htmlFor="title">Title</label>
-  <input type="text" className={`${styles.inputText}`} value={title}  id="title" placeholder="Title.." onChange={(e) =>setTitle(e.target.value)}/>
+      <form onSubmit={handleSubmit}>
+        <label className={`${styles.labell}`} htmlFor="title">
+          Title
+        </label>
+        <input
+          type="text"
+          className={`${styles.inputText}`}
+          value={title}
+          id="title"
+          placeholder="Title.."
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-  <label  className={`${styles.labell}`}  htmlFor="content">Content</label>
-  <input type="text" className= {`${styles.inputText}`} value={content}  id="content" placeholder="Content.."  onChange={(e) => setContent(e.target.value)}/>
+        <label className={`${styles.labell}`} htmlFor="content">
+          Content
+        </label>
+        <input
+          type="text"
+          className={`${styles.inputText}`}
+          value={content}
+          id="content"
+          placeholder="Content.."
+          onChange={(e) => setContent(e.target.value)}
+        />
 
-  <label  className={`${styles.labell}`}  htmlFor="imm">Image</label>
-  <input type="file" className= {`${styles.inputText}`} id="imm" placeholder="imagee"  onChange={(e) => setImage(e.target.files[0])}/>
-  <div className={`${styles.responsiveimg}`}>
-         <img src={imageUrl ? URL.createObjectURL(imageUrl) : ""} width={"100%"}   />
-         </div>
- <input className= {`${styles.inputSubmit} ${styles.inputSubmitHover}`} type="submit" value="Submit"/>
-</form>
+        <label className={`${styles.labell}`} htmlFor="imm">
+          Image
+        </label>
+        <input
+          type="file"
+          className={`${styles.inputText}`}
+          id="imm"
+          placeholder="imagee"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+        <div className={`${styles.responsiveimg}`}>
+          <img
+            src={imageUrl ? URL.createObjectURL(imageUrl) : ""}
+            width={"100%"}
+          />
+        </div>
+        <input
+          className={`${styles.inputSubmit} ${styles.inputSubmitHover}`}
+          type="submit"
+          value="Submit"
+        />
+      </form>
+    </div>
+  );
+};
 
-  </div>
-  )
-}
-
-
-
-export default createpage
+export default createpage;
 
 export const getServerSideProps = requireAuthentication(async (context) => {
   // const id = context.params.individualid;
-  console.log("reaching hof")
+  console.log("reaching hof");
   return {
-    props:{
-             
-        }
+    props: {},
   };
 });

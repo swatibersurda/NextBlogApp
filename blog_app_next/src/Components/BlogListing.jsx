@@ -7,7 +7,7 @@ export const BlogListing = ({ products }) => {
         products.map((item) => {
           return (
             <Link
-              href={`/individualPostPage/${item._id}`}
+              href={`/?page=1`}
               key={item._id}
               className={`${styles.linkNone}`}
             >

@@ -19,6 +19,7 @@ const registeruser = () => {
         email,
         password,
       };
+
       const data = await fetch(`${baseUrl}/api/register`, {
         method: "POST",
         body: JSON.stringify(payload),
@@ -27,8 +28,12 @@ const registeruser = () => {
         },
       });
       const result = await data.json();
-      console.log(result, "result after register");
+
       if (result.newUser) {
+        alert(result.message);
+        router.push("/login");
+      } else if (result.message) {
+        alert(result.message);
         router.push("/login");
       }
     }
@@ -38,10 +43,11 @@ const registeruser = () => {
       <h1 className={`${styles.textalignCenter}`}>REGISTER</h1>
 
       <form onSubmit={handleSubmit}>
-        <label className={`${styles.labell}`}  htmlFor="name">
+        <label className={`${styles.labell}`} htmlFor="name">
           Name
         </label>
         <input
+          value={name}
           type="text"
           className={`${styles.inputText}`}
           id="name"
@@ -49,10 +55,11 @@ const registeruser = () => {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <label className={`${styles.labell}`}  htmlFor="email">
+        <label className={`${styles.labell}`} htmlFor="email">
           Email
         </label>
         <input
+          value={email}
           type="email"
           className={`${styles.inputText}`}
           id="email"
@@ -60,10 +67,11 @@ const registeruser = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label className={`${styles.labell}`}  htmlFor="password">
+        <label className={`${styles.labell}`} htmlFor="password">
           Password
         </label>
         <input
+          value={password}
           type="password"
           className={`${styles.inputText}`}
           id="password"
@@ -77,15 +85,13 @@ const registeruser = () => {
         />
       </form>
       <h3 className={`${styles.linkDecoration}`}>
-       
         <Link className={`${styles.linkDecoration}`} href={"/registerauthor"}>
-        Want to Post your own? Click here
+          Want to Post your own? Click here
         </Link>
       </h3>
       <h3 className={`${styles.linkDecoration}`}>
-       
         <Link className={`${styles.linkDecoration}`} href={"/login"}>
-        Already Registered?Login here
+          Already Registered?Login here
         </Link>
       </h3>
     </div>

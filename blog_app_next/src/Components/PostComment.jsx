@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
-import {GoPerson} from "react-icons/go";
-import baseUrl from "../Config/baseUrl"
-
+import { GoPerson } from "react-icons/go";
+import baseUrl from "../Config/baseUrl";
 
 export const PostComment = ({ item }) => {
   const [comm, setComment] = useState("");
@@ -52,10 +51,7 @@ export const PostComment = ({ item }) => {
               <div className={`${styles.userCommentedimageDiv}`}>
                 <GoPerson color=" #6b5b95" fontSize={"40px"}></GoPerson>
               </div>
-              <div className={`${styles.userCommentDiv}`}>
-              {itemss.comm}
-              </div>
-             
+              <div className={`${styles.userCommentDiv}`}>{itemss.comm}</div>
             </div>
           );
         })}

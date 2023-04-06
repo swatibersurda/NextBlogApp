@@ -18,19 +18,6 @@ const authorpanel = ({ data }) => {
 
 export default authorpanel;
 
-// export const getServerSideProps = requireAuthentication(async (context) => {
-//   const id = context.params.individualid;
-//   const data = await fetch(`http://localhost:3000/api/blogbyid/${id}`);
-//   const result = await data.json();
-//   console.log(result, "result after fetchinfg one id");
-
-//   return {
-//     props:{
-//               data:result
-//         }
-//   };
-// });
-
 export const getServerSideProps = requireAuthentication(async (context) => {
   // Acessing cookies inside getserverside props which is inside browser
   const { user } = parseCookies(context);
@@ -42,7 +29,6 @@ export const getServerSideProps = requireAuthentication(async (context) => {
     `${baseUrl}/api/userbyid/${x._id}`
   );
   const res = await data.json();
-  console.log(res, "ooo");
 
   return {
     props: {

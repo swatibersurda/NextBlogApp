@@ -6,14 +6,13 @@ import userModel from "@/Model/user.model";
 dbConnect();
 // this endpoint for signup or post.
 export default async (req, res) => {
-  console.log("reahing here...");
-  const { name, email, password, blogsArray, role } = req.body;
+  const { name, email, password, role } = req.body;
   try {
     // IF THESE FIELDS ARE NOT GIVEN WHILE REGISTERING WILL SHOW ERROR
     if (!name || !email || !password) {
       return res.status(422).json({ error: "please fill all details" });
     }
-    const user = await userModel.findOne({ email:email });
+    const user = await userModel.findOne({ email: email });
 
     if (user) {
       return res.status(422).json({ message: "user registered already..." });
@@ -23,13 +22,14 @@ export default async (req, res) => {
     const newUser = await new userModel({
       name,
       email,
-      blogsArray:[],
+      blogsArray: [],
       password: hashPassword,
       role,
     }).save();
 
-    return res.status(201).json({newUser, message: "signup sucess" });
+    return res.status(201).json({ newUser, message: "signup sucess" });
   } catch (err) {
+    console.log(err, "err");
     return res.status(500).json({ error: "server-error" });
   }
 };

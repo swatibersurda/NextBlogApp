@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-const userSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     email: { type: String, require: true },
     password: { type: String, require: true },
     blogsArray: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "blog", required: true },
+      { type: mongoose.Schema.Types.ObjectId, ref: "Blog", required: true },
     ],
     role: {
       type: String,
@@ -19,4 +19,4 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.models.user || mongoose.model("user", userSchema);
+export default mongoose.models.User || mongoose.model("User", UserSchema);
