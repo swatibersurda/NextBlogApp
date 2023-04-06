@@ -327,5 +327,6 @@
   font-weight: 800;
 }
 .paginatedButton:hover {
-  background-color: blue;
+  background-color: green;
+  color:white;
 }
